@@ -1,0 +1,37 @@
+@using System;
+@model IEnumerable<Chefs.Models.Dish>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs and Dishes</title>
+</head>
+<body>
+    <div>
+        <p><a href="/Chefs">Chefs</a> | <a>Dishes</a></p>
+        <h1>Dishes!</h1>
+        <div>
+            <h3>Dishes Bro! Check it out.</h3>
+            <a href="/Dishes/new">Add a Dish</a>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Chef</th>
+                    <th>Tastiness</th>
+                    <th>Calories</th>
+                </tr>
+                @foreach (Dish d in Model){
+                    <tr>
+                        <td>@d.name</td>
+                        <td>@d.creator.firstname @d.creator.lastname</td>
+                        <td>@d.tastiness</td>
+                        <td>@d.calories</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs and Dishes</title>
+</head>
+<style>
+    .container{
+        width: 50%;
+    }
+    .inline {
+        display: inline-block;
+        margin: 20px;
+        vertical-align: top;
+    }
+    .big-ass-button {
+        width: 90%;
+        height: 300px;
+        margin: 20px auto;
+    }
+</style>
+<body>
+    <div class="container">
+        <a href="/Chefs">Chefs</a><span>|</span><a href="/Dishes">Dishes</a>
+        <div>
+            <h1>Add a new Dish</h1>
+        </div>
+        @model Dish
+        <form asp-action="CreateDish" method="POST">
+            <!-- Error Messages -->
+            <span style="color: red;" asp-validation-for="name"></span>
+            <br>
+            <span style="color: red;" asp-validation-for="chefs_chefid"></span><br>
+            <span style="color: red;" asp-validation-for="calories"></span><br>
+            <span style="color: red;" asp-validation-for="tastiness"></span><br>
+            <span style="color: red;" asp-validation-for="description"></span><br>
+
+            <div class="inline">
+                <p>Name of Dish</p>
+                <input asp-for="name">
+                <p># of Calories</p>
+                <input asp-for="calories">
+            </div>
+            <div class="inline">
+                <p>Chef</p>
+                <select asp-for="chefs_chefid">
+                    @foreach(var c in ViewBag.AllChefs)
+                    {
+                        <option value=@c.chefid>@c.firstname @c.lastname</option>
+                    }
+                </select>
+                <p>Tastiness</p>
+                <select asp-for="tastiness">
+                    <option value="0">-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="inline">
+                <p>Description</p>
+                <textarea asp-for="description" id="" cols="30" rows="10"></textarea>
+                <br>
+            </div>
+            <div>
+                <button type="submit" class="big-ass-button">Add Dish</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

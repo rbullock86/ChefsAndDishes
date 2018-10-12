@@ -1,0 +1,52 @@
+@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs and Dishes</title>
+</head>
+<style>
+    .container{
+        width: 50%;
+    }
+    .inline {
+        display: inline-block;
+        margin: 20px;
+        vertical-align: top;
+    }
+    .big-ass-button {
+        width: 90%;
+        height: 300px;
+        margin: 20px auto;
+        background-color: maroon;
+        font-size: 80px;
+    }
+</style>
+<body>
+    <div>
+        <a href="/Chefs">Chefs</a><span>|</span><a href="/Dishes">Dishes</a>
+        <div>
+            <h1>Add a new Chef to ChefForce!</h1>
+        </div>
+        @model Chef
+        <form asp-action="CreateChef" method="POST">
+            <p><span style="color: red;" asp-validation-for="firstname"></span></p>
+            <p><span style="color: red;" asp-validation-for="lastname"></span></p>
+            <p><span style="color: red;" asp-validation-for="dateofbirth"></span></p>
+            <div class="inline">
+                <p>First Name</p>
+                <input asp-for="firstname">
+                <p>Last Name</p>
+                <input asp-for="lastname">
+            </div>
+            <div class="inline">
+                <p>Date of Birth</p>
+                <input asp-for="dateofbirth">
+            </div>
+            <button type="submit" class="big-ass-button">Kill Me!/Add Chef</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+@using System;
+@model IEnumerable<Chefs.Models.Chef>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs and Dishes</title>
+</head>
+<body>
+    <div>
+        <p><a>Chefs</a> | <a href="/Dishes">Dishes</a></p>
+        <h1>This is the chefs/home page</h1>
+
+        <div>
+            <h3>Check out our roster of Chefs!</h3>
+            <a href="/Chefs/new">Add a Chef</a>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th># of Dishes</th>
+                </tr>
+                @{ foreach (Chef c in Model){
+                    <tr>
+                        <td>@c.firstname @c.lastname</td>
+                        <td>@Chef.GetAge(c.dateofbirth)</td>
+                        @if(c.Dishes == null){
+                            <td>0</td>
+                        }
+                        else{
+                            <td>@c.Dishes.Count</td>
+                        }
+                    </tr>
+                }}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
